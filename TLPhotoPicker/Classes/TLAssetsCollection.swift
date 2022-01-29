@@ -382,11 +382,15 @@ public struct TLAssetsCollection {
             let result = sections[safe: indexPath.section]
             return result?.assets[safe: index]
         }else {
-            /*var index = indexPath.row
+            /* ======== ORIG CODE ==============
+            var index = indexPath.row
             index = index - (self.useCameraButton ? 1 : 0)
             guard let result = self.fetchResult, index < result.count else { return nil }
-            return TLPHAsset(asset: result.object(at: max(index,0)))*/
-            // MODIFICATION to display like on recents of the phone photo app
+            return TLPHAsset(asset: result.object(at: max(index,0)))
+            ======== END ORIG CODE ============== */
+                         
+            // MODIFICATION FOR LNF-274 to display like on recents of the phone photo app
+            #warning("TODO: LNF-275: INTEGRATE this properly!!!")
             var index = indexPath.row
             //print("INDEX orig: \(index)")
             index = index - (self.useCameraButton ? 1 : 0)
@@ -395,6 +399,7 @@ public struct TLAssetsCollection {
             let reversedIndex = result.count - index - 1
             guard reversedIndex < result.count else { return nil }
             return TLPHAsset(asset: result.object(at: max(reversedIndex,0)))
+            // END MODIFICATION
         }
     }
     

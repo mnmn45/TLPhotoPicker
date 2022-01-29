@@ -1204,7 +1204,14 @@ extension TLPhotosPickerViewController: UITableViewDelegate, UITableViewDataSour
         let collection = self.collections[indexPath.row]
         cell.titleLabel.text = collection.title
         cell.subTitleLabel.text = "\(collection.fetchResult?.count ?? 0)"
+        /* ======== ORIG CODE ==============
         if let phAsset = collection.getAsset(at: collection.useCameraButton ? 1 : 0) {
+        ======== END ORIG CODE ============== */
+        
+        // MODIFICATION FOR LNF-274 to display like on recents of the phone photo app
+        #warning("TODO: LNF-275: INTEGRATE this properly!!!")
+        if let phAsset = collection.getAsset(at: collection.count - 1) {
+        // END MODIFICATION
             let scale = UIScreen.main.scale
             let size = CGSize(width: 80*scale, height: 80*scale)
             self.photoLibrary.imageAsset(asset: phAsset, size: size, completionBlock: {  (image,complete) in
