@@ -55,7 +55,10 @@ public struct TLPhotosPickerConfigure {
     public var customLocalizedTitle: [String: String] = ["Camera Roll": "Camera Roll"]
     public var tapHereToChange = "Tap here to change"
     public var cancelTitle = "Cancel"
+    public var cancelTitleTintColor = UIColor.systemBlue
     public var doneTitle = "Done"
+    public var doneTitleTintColor = UIColor.systemBlue
+    public var orderLabelTintColor = UIColor.black
     public var emptyMessage = "No albums"
     public var selectMessage = "Select"
     public var deselectMessage = "Deselect"
@@ -421,6 +424,10 @@ extension TLPhotosPickerViewController {
         let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
         self.doneButton.setTitleTextAttributes(attributes, for: .normal)
         self.doneButton.title = self.configure.doneTitle
+        // MODIFICATION FROM ORIG CODE ================
+        self.cancelButton.tintColor = self.configure.cancelTitleTintColor
+        self.doneButton.tintColor = self.configure.doneTitleTintColor
+        // END MODIFICATION ================
         self.emptyView.isHidden = true
         self.emptyImageView.image = self.configure.emptyImage
         self.emptyMessageLabel.text = self.configure.emptyMessage
